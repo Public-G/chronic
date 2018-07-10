@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.github.chronic.pojo.Location" table="tb_location">
+		<!-- 建立类中的属性与表中的主键对应 -->
+		<id name="locid" column="locid">
+			<!-- 主键生成策略 -->
+			<generator class="native" />
+		</id>
+
+		<!-- 建立类中的普通的属性和表的字段的对应 -->
+		<property name="org_code"/>
+		<property name="area_code"/>
+		<property name="org_name"/>
+
+
+		<!--建立与User的一对多关系-->
+		<!--
+			name:多的一方的的对象集合的属性名称
+		-->
+		<set name="users" lazy="false">
+			<!--
+				clumn:多的一方的外键的名称
+			-->
+			<key column="locid"></key>
+
+			<one-to-many class="com.github.chronic.pojo.User"/>
+		</set>
+		
+
+	</class>
+</hibernate-mapping>

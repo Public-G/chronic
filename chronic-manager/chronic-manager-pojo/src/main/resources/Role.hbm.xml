@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.github.chronic.pojo.Role" table="tb_role" >
+		<!-- 建立类中的属性与表中的主键对应 -->
+		<id name="role_id" column="role_id">
+			<!-- 主键生成策略 -->
+			<generator class="native" />
+		</id>
+
+		<!-- 建立类中的普通的属性和表的字段的对应 -->
+		<property name="role_name" column="role_name"/>
+		<property name="role_label"/>
+
+
+
+		<!-- 建立与用户的多对多的映射关系 -->
+		<!-- 
+			name:对方的集合的属性名称
+			table:中间表的名称
+			被动方放弃外键维护权:不能维护中间表，即不能通过角色建立与用户的关系，不能在中间表生成关联数据
+			
+		 -->
+		<set name="users" table="tb_user_role" lazy="false" >
+			
+			<!-- 当前对象对应的中间表的外键的名称 -->
+			<key column="role_id"></key>
+			
+			<!-- 
+				class:对方类的全路径
+				column:对方的对象在中间表的外键的名称
+			 -->
+			<many-to-many  class="com.github.chronic.pojo.User" column="user_id"></many-to-many>
+		
+		</set>
+
+
+		<!-- 建立与菜单的多对多的映射关系 -->
+		<set name="menus" table="tb_role_menu" lazy="false">
+			<key column="role_id"></key>
+			<many-to-many class="com.github.chronic.pojo.Menu" column="menu_id"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

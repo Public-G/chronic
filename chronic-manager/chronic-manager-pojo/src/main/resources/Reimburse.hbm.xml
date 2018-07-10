@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.github.chronic.pojo.Reimburse" table="tb_reimburse" >
+		<!-- 建立类中的属性与表中的主键对应 -->
+		<id name="rid" column="rid">
+			<!-- 主键生成策略 -->
+			<generator class="native" />
+		</id>
+
+		<!-- 建立类中的普通的属性和表的字段的对应 -->
+		<property name="reimburse_id"/>
+		<property name="identity"/>
+		<property name="username"/>
+		<property name="join_id"/>
+		<property name="proof_id"/>
+		<property name="proof_name"/>
+		<property name="medical_name"/>
+		<property name="medical_invoice"/>
+		<property name="medical_expenses"/>
+		<property name="medical_time"/>
+		<property name="reimburse_amount"/>
+		<property name="org_name"/>
+		<property name="job_id"/>
+		<property name="ip"/>
+		<property name="reimburse_time"/>
+		<property name="is_delete"/>
+
+
+	</class>
+</hibernate-mapping>

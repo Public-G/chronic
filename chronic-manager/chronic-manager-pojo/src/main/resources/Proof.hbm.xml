@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.github.chronic.pojo.Proof" table="tb_proof" >
+		<!-- 建立类中的属性与表中的主键对应 -->
+		<id name="pfid" column="pfid">
+			<!-- 主键生成策略 -->
+			<generator class="foreign" >
+				<param name="property">file</param>
+			</generator>
+		</id>
+
+		<!-- 建立类中的普通的属性和表的字段的对应 -->
+		<property name="proof_id"/>
+		<property name="proof_name"/>
+		<property name="start_time"/>
+		<property name="end_time"/>
+
+		<!--由于在申明主键的时候已经将关系写清楚了，所以在这里没有column这个属性。按平常的习惯，我们会在这里写上column="数据库中外键字段属性名称。"-->
+		<!--constrained属性：就是表明我们的主键当外键使用了。
+			这个属性两个作用，一是通知这种对应关系在上面已经写过了，所以这里才不需要写column，二是表明这种关系是什么，也就是主键当外键。
+			取消懒加载，否则删除失败-->
+		<one-to-one name="file" constrained="true" lazy="false"></one-to-one>
+	</class>
+</hibernate-mapping>

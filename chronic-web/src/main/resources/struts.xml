@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+    <!-- 定义Struts2拦截后缀名 -->
+    <constant name="struts.action.extension" value="action,html,"></constant>
+
+    <!-- /static 为存放静态资源的路径，意为不拦截对此文件夹下文件的请求 -->
+    <constant name="struts.action.excludePattern" value="/static/.*" />
+
+    <package name="dispatcher" extends="struts-default" namespace="/">
+        <default-action-ref name="login"></default-action-ref>
+        <action name="login">
+            <result>/WEB-INF/view/common/login.jsp</result>
+        </action>
+        <action name="index" class="dispatcherAction" method="index">
+            <result>/WEB-INF/view/common/index.jsp</result>
+            <result name="invalid" type="redirectAction">login</result>
+        </action>
+    </package>
+
+
+    <package name="userAction" extends="json-default" namespace="/user">
+        <global-results>
+            <result type="json">
+                <param name="root">jsonBean</param>
+            </result>
+        </global-results>
+
+        <action name="user*" class="userAction" method="user{1}">
+            <result name="index" type="redirect">/index.html</result>
+            <result name="loginFail">/WEB-INF/view/common/login.jsp</result>
+        </action>
+    </package>
+
+
+    <package name="permission" extends="json-default" namespace="/permission">
+        <global-results>
+            <result type="json">
+                <param name="root">jsonBean</param>
+            </result>
+        </global-results>
+        <action name="user_*" class="userManagerAction" method="user_{1}">
+            <result name="user_tab">/WEB-INF/view/system/permission/user_tab.jsp</result>
+            <result name="user_add" >/WEB-INF/view/system/permission/user_add.jsp</result>
+            <result name="user_update" >/WEB-INF/view/system/permission/user_update.jsp</result>
+            <result name="user_role" >/WEB-INF/view/system/permission/user_role.jsp</result>
+            <result name="user_location" >/WEB-INF/view/system/permission/user_location.jsp</result>
+        </action>
+
+        <action name="role_*" class="roleManagerAction" method="role_{1}">
+            <result name="role_tab">/WEB-INF/view/system/permission/role_tab.jsp</result>
+            <result name="role_add">/WEB-INF/view/system/permission/role_add.jsp</result>
+            <result name="role_update">/WEB-INF/view/system/permission/role_update.jsp</result>
+            <result name="role_menu">/WEB-INF/view/system/permission/role_menu.jsp</result>
+        </action>
+
+        <action name="menu_*" class="menuManagerAction" method="menu_{1}">
+            <result name="menu_tab">/WEB-INF/view/system/permission/menu_tab.jsp</result>
+            <result name="menu_add">/WEB-INF/view/system/permission/menu_add.jsp</result>
+            <result name="menu_update">/WEB-INF/view/system/permission/menu_update.jsp</result>
+        </action>
+
+        <action name="location_*" class="locationAction" method="location_{1}">
+            <result name="location_tab">/WEB-INF/view/system/permission/location_tab.jsp</result>
+            <result name="location_add">/WEB-INF/view/system/permission/location_add.jsp</result>
+            <result name="location_update">/WEB-INF/view/system/permission/location_update.jsp</result>
+        </action>
+
+        <action name="area_*" class="areaAction" method="area_{1}">
+            <result name="area_tab">/WEB-INF/view/system/permission/area_tab.jsp</result>
+            <result name="area_add">/WEB-INF/view/system/permission/area_add.jsp</result>
+            <result name="area_update">/WEB-INF/view/system/permission/area_update.jsp</result>
+        </action>
+    </package>
+
+
+    <package name="profession" extends="json-default" namespace="/profession">
+        <global-results>
+            <result type="json">
+                <param name="root">jsonBean</param>
+            </result>
+        </global-results>
+
+        <action name="file_*" class="fileAction" method="file_{1}">
+            <result name="file_tab">/WEB-INF/view/system/profession/file_tab.jsp</result>
+            <result name="file_add">/WEB-INF/view/system/profession/file_add.jsp</result>
+            <result name="file_update">/WEB-INF/view/system/profession/file_update.jsp</result>
+            <result name="file_childUpdate">/WEB-INF/view/system/profession/file_childUpdate.jsp</result>
+            <result name="file_childAdd">/WEB-INF/view/system/profession/file_childAdd.jsp</result>
+        </action>
+
+        <action name="join_*" class="joinAction" method="join_{1}">
+            <result name="join_tab">/WEB-INF/view/system/profession/join_tab.jsp</result>
+        </action>
+
+        <action name="proof_*" class="proofAction" method="proof_{1}">
+            <result name="proof_tab">/WEB-INF/view/system/profession/proof_tab.jsp</result>
+            <result name="proof_add">/WEB-INF/view/system/profession/proof_add.jsp</result>
+            <result name="proof_update">/WEB-INF/view/system/profession/proof_update.jsp</result>
+        </action>
+
+        <action name="policy_*" class="policyAction" method="policy_{1}">
+            <result name="policy_tab">/WEB-INF/view/system/profession/policy_tab.jsp</result>
+            <result name="policy_add">/WEB-INF/view/system/profession/policy_add.jsp</result>
+            <result name="policy_update">/WEB-INF/view/system/profession/policy_update.jsp</result>
+        </action>
+
+        <action name="reimburse_*" class="reimburseAction" method="reimburse_{1}">
+            <result name="reimburse_tab">/WEB-INF/view/system/profession/reimburse_tab.jsp</result>
+            <result name="reimburse_add">/WEB-INF/view/system/profession/reimburse_add.jsp</result>
+            <result name="reimburse_list">/WEB-INF/view/system/profession/reimburse_list.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

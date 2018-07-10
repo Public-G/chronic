@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.github.chronic.pojo.File" table="tb_file" >
+		<!-- 建立类中的属性与表中的主键对应 -->
+		<id name="fid" column="fid">
+			<!-- 主键生成策略 -->
+			<generator class="native" />
+		</id>
+
+		<!-- 建立类中的普通的属性和表的字段的对应 -->
+		<property name="area_code"/>
+		<property name="group_id"/>
+		<property name="family_id"/>
+		<property name="identity"/>
+		<property name="username"/>
+		<property name="sex"/>
+		<property name="birth"/>
+		<property name="address"/>
+		<property name="cellphone"/>
+		<property name="pid"/>
+		<property name="relation"/>
+		<property name="create_time"/>
+		<property name="is_delete"/>
+
+
+		<!--
+			one-to-one默认使用的就是用主键跟关联类的主键进行比较，本来就是主键关系，通过主键跟主键比较，就能达到目的，所以这个中没有column这个属性
+　　　　		但是可以配置一些别的属性，不需要写column
+ 		-->
+		<one-to-one name="join"></one-to-one>
+		<one-to-one name="proof"></one-to-one>
+	</class>
+</hibernate-mapping>

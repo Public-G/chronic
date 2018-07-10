@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+ <context:component-scan base-package="com.github.chronic.action.*" ></context:component-scan>
+
+	<!-- 引用dubbo服务 -->
+    <dubbo:application name="chronic-web"/>
+    <!-- linux06:2181,linux07:2181,linux08:2181 -->
+    <dubbo:registry protocol="zookeeper" address="linux06:2181,linux07:2181,linux08:2181"/>
+    <dubbo:reference interface="com.github.chronic.service.user.UserService" id="userService"/>
+    <dubbo:reference interface="com.github.chronic.service.menu.MenuService" id="menuService"/> 
+    <dubbo:reference interface="com.github.chronic.service.permission.UserManagerService" id="userManagerService"/>
+    <dubbo:reference interface="com.github.chronic.service.permission.LocationService" id="locationService"/>
+    <dubbo:reference interface="com.github.chronic.service.permission.RoleManagerService" id="roleManagerService"/>
+    <dubbo:reference interface="com.github.chronic.service.permission.AreaService" id="areaService"/>
+    
+    
+    
+     <dubbo:reference interface="com.github.chronic.service.profession.FileService" id="fileService"/>
+     <dubbo:reference interface="com.github.chronic.service.profession.JoinService" id="joinService"/>
+     <dubbo:reference interface="com.github.chronic.service.profession.PolicyService" id="policyService"/>
+     <dubbo:reference interface="com.github.chronic.service.profession.ProofService" id="proofService"/>
+     <dubbo:reference interface="com.github.chronic.service.profession.ReimburseService" id="reimburseService"/>
+   
+</beans>

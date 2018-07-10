@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.github.chronic.pojo.Menu" table="tb_menu">
+		<!-- 建立类中的属性与表中的主键对应 -->
+		<id name="menu_id" column="menu_id">
+			<!-- 主键生成策略 -->
+			<generator class="native" />
+		</id>
+
+		<!-- 建立类中的普通的属性和表的字段的对应 -->
+		<property name="menu_name" />
+		<property name="menu_icon" />
+		<property name="pid" />
+		<property name="request_url" />
+
+
+		<!-- 建立与角色的多对多的映射关系 -->
+		<!-- 
+			name:对方的集合的属性名称
+			table:中间表的名称
+		 -->
+		<set name="roles" table="tb_role_menu" lazy="false">
+			<!-- 当前对象对应的中间表的外键的名称 -->
+			<key column="menu_id"></key>
+			
+			<!-- 
+				class:对方类的全路径
+				column:对方的对象在中间表的外键的名称
+			 -->
+			<many-to-many class="com.github.chronic.pojo.Role" column="role_id" ></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

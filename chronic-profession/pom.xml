@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.chronic</groupId>
+		<artifactId>chronic-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>chronic-profession</artifactId>
+	<packaging>pom</packaging>
+	<modules>
+		<module>chronic-profession-dao</module>
+		<module>chronic-profession-interface</module>
+		<module>chronic-profession-service</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.github.chronic</groupId>
+			<artifactId>chronic-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+
+	<!-- 配置tomcat插件 -->
+	<build>
+		<finalName>chronic-profession</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<path>/</path>
+					<port>8883</port>
+					<uriEncoding>UTF-8</uriEncoding>
+					<!-- <url>http://192.168.253.62:8080/manager/text</url>
+					<username>tomcat</username>
+					<password>tomcat</password> -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
